@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>knockout program</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js" type = "text/javascript"></script>
+      <style>
+          .App {
+            font-family: sans-serif;
+            text-align: center;
+          }
+          * {
+            margin: 0;
+            padding: 0;
+          }
+          .calc {
+            background: linear-gradient(to right, #e91e63, #3151b5);
+            height: 62%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+          }
+          .textview {
+              margin: 10px;
+              padding: 0;
+              font-size: 20px;
+              width: 200px;
+              border: 1px solid;
+              height: 30px;
+              background: #fff;
+          }
+          td {
+            margin-top: 5px;
+          }
+          .button {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-bottom: 5px;
+          }
+
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h2 style="text-align: center;padding-top:50px;">Calculator</h2>
+              </div>
+            </div>
+          </div>
+          
+          <div class="container calc">
+            <div class="row">
+              <div class="calculator-body center-block col-lg-12">
+                <div class="calculator-display">
+                  <h4 class="textview" data-bind="text: calculatorDisplay"></h4>
+                </div>  
+                <table>
+                    <tr>
+                      <td>
+                        <button data-bind="click: clearDisplay" class="button">C</button>                    
+                      </td>
+                      <td>
+                        <button data-bind="click: backspace" class="button"><</button>
+                      
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('*'); }" class="button">*</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('/'); }" class="button">/</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('7'); }" class="button">7</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('8'); }" class="button">8</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('9'); }" class="button">9</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('-'); }" class="button">-</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('4'); }" class="button">4</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('5'); }" class="button">5</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('6'); }" class="button">6</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('+'); }" class="button">+</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('1'); }" class="button">1</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('2'); }" class="button">2</button>
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('3'); }" class="button">3</button>
+                      </td>
+                      <td rowSpan="2">
+                        <button style="height:88px;" data-bind="click: evaluateDisplay" class="button">=</button>
+                       
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan="2">
+                            <button style="width:93px;" data-bind="click: function() { updateCalculatorDisplay('0'); }" class="button">0</button>
+                        
+                      </td>
+                      <td>
+                        <button data-bind="click: function() {updateCalculatorDisplay('.'); }" class="button">.</button>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+            </div>
+          
+          </div>
+          <script>
+              var CalculatorViewModel = function() {
+  
+  this.calculatorDisplay = ko.observable(""); 
+  
+  this.updateCalculatorDisplay = function(value) {
+    this.calculatorDisplay(this.calculatorDisplay()+value); 
+  }; 
+  this.clearDisplay = function() {
+    this.calculatorDisplay(""); 
+  }
+  
+  this.backspace = function() {
+    if (this.calculatorDisplay().length) {
+      this.calculatorDisplay(this.calculatorDisplay().substring(0,this.calculatorDisplay().length-1)); 
+    }
+  }
+  
+  this.evaluateDisplay = function() {
+    //try the code, if there's a problem, alert, but allow the user to backspace the problem.
+    if (this.calculatorDisplay().length) {
+      this.calculatorDisplay(eval(this.calculatorDisplay()).toString()); 
+    }   
+  } 
+}
+ko.applyBindings(new CalculatorViewModel()); 
+
+          </script>
+    </body>
+</html>
