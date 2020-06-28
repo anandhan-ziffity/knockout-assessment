@@ -1,0 +1,56 @@
+.title {
+    text-align: center;
+}
+thead{
+    background: #d7dded;
+}
+ thead th{
+    padding: 7px;
+}
+.answer-table table {
+    width: 800px;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    cursor: pointer;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-warning {
+color: #212529;
+background-color: #ffc107;
+border-color: #ffc107;
+}
+.btn-success {
+color: #fff;
+background-color: #28a745;
+border-color: #28a745;
+}
+.btn-danger {
+color: #fff;
+background-color: #bd2130;
+border-color: #b21f2d;
+}
+
+.add-btn,.submit-btn {
+    margin-top: 30px;
+}
+input[type="text"],input[type="number"] {
+    height: 25px;
+}
+.answer-table {
+    margin-top: 50px;
+}

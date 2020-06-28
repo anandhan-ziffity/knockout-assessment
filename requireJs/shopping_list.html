@@ -1,23 +1,7 @@
 <html>
     <head>
         <title>knockout program</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src = "https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js" type = "text/javascript"></script>        
-        <script data-main="js/main" src="js/vendor/require.js"></script>
-        <style>
-             thead{
-                background: #d7dded;
-            }
-             thead th{
-                padding: 7px;
-            }
-            .answer-table table {
-                width: 800px;
-            }
-
-         </style>
+        <link href="css/style.css" rel="stylesheet"/>     
     </head>
     <body>
         <div class="title text-center mt-5">
@@ -78,8 +62,8 @@
 <!-- Template - End Here -->
 
             </script>
-            <button  class="btn btn-warning mt-3" data-bind="click: addNewRow">Add Row</button>
-            <button  class="btn btn-success mt-3" data-bind="click: submitTable">Submit</button>           
+            <button  class="btn add-btn btn-warning mt-3" data-bind="click: addNewRow">Add Row</button>
+            <button  class="btn submit-btn btn-success mt-3" data-bind="click: submitTable">Submit</button>           
         </div>
 
         <div class="answer-table pl-5" >
@@ -98,55 +82,14 @@
                 </tbody>
             </table>
         </div>
-        <script>
-             function tableRow(id,name,category,qty,availbaility,discounts) {
-                 var self=this;
-                self.id = ko.observable(id);
-                self.name = ko.observable(name);
-                self.category = ko.observable(category);
-                self.qty = ko.observable(qty).extend({ digit: true }).extend({ min: 0});
-                self.availbaility = ko.observable();
-                self.discounts = ko.observableArray();
-               
-            }
-
-            function viewModelAccount() {  
-                var self=this;         
-                self.id=ko.observable();
-                self.name=ko.observable();
-                self.categories= ko.observableArray(["Mobile", "Laptop", "Cricket Bat", "Dress"]);
-                self.tableRows = ko.observableArray([]); 
-                self.answerTableRows =ko.observableArray([]);
-                self.addNewRow=function(){
-                    self.tableRows.push(new tableRow());
-                  
-                }                
-                this.addNewRow();
-                self.submitTable=function(){                    
-                    self.answerTableRows(self.tableRows());
-                }               
-                self.removeRow=function(item){
-                    self.tableRows.remove(item);
-                }              
-                
-              }          
-         ko.applyBindings(new viewModelAccount());
-        </script>
+       
         <!-- set quantity as positive value-->
-        <script>
-             $(document).ready(function(){
-                $('.input-text.qty').on('blur keydown keypress keyup', function(e){
-                if($(this).val().match(/^0/)){
-                    $(this).val(1);
-                    return false;
-                }
-
-                if($(this).val() == '') {
-                    $(this).val(1);
-                    return false;
-                }             
-            });
-             })
+        
+            <script data-main="js/config" src="js/require.js"></script>
+            <script>
+                require(['config'], function () { 
+                    require(['order']);                   
+                });
             </script>
     </body>
 </html>
