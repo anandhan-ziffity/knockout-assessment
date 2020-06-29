@@ -30,6 +30,13 @@ define(['knockout', 'jquery'], function (ko, $) {
            self.tableRows.remove(item);
        }              
        
+       self.resetTable=function(){           
+        self.tableRows.removeAll(); 
+        self.answerTableRows.removeAll();               
+        this.addNewRow();
+        
+    }              
+    
      }      
      ko.applyBindings(new viewModelAccount());
      
